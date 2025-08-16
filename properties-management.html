@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - إدارة العقارات</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">إدارة العقارات</h1>
+                    <button class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addPropertyModal">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> إضافة عقار جديد
+                    </button>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row" id="cards-container"></div>
+
+                <!-- Properties Table -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">قائمة العقارات</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow">
+                                <div class="dropdown-header">خيارات التصدير:</div>
+                                <a class="dropdown-item" href="Report.html?export=properties&type=excel"><i
+                                        class="fas fa-file-excel me-2 text-success"></i> Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="window.print()"><i
+                                        class="fas fa-print me-2 text-gray-600"></i> طباعة</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="propertiesTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>صورة</th>
+                                        <th>اسم العقار</th>
+                                        <th>العنوان</th>
+                                        <th>النوع</th>
+                                        <th>الوحدات</th>
+                                        <th>الشاغرة</th>
+                                        <th>الحالة</th>
+                                        <th>إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="property-details.html?id=1">
+                                                <img src="https://source.unsplash.com/random/300x200/?apartment"
+                                                    class="property-img" alt="عمارة الأماني">
+                                            </a>
+                                        </td>
+                                        <td><a href="property-details.html?id=1">عمارة الأماني</a></td>
+                                        <td>تلاع العلي, عمان</td>
+                                        <td>عمارة سكنية</td>
+                                        <td>24</td>
+                                        <td class="vacant-units">0</td>
+                                        <td>
+                                            <span class="badge bg-success badge-occupancy">
+                                                <i class="fas fa-check-circle me-1"></i> مؤجرة بالكامل
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="property-details.html?id=1" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-property.html?id=1" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="property-details.html?id=2">
+                                                <img src="https://source.unsplash.com/random/300x200/?villa"
+                                                    class="property-img" alt="فيلا الروضة">
+                                            </a>
+                                        </td>
+                                        <td><a href="property-details.html?id=2">فيلا الروضة</a></td>
+                                        <td>طبربور, عمان</td>
+                                        <td>فيلا</td>
+                                        <td>1</td>
+                                        <td class="vacant-units">0</td>
+                                        <td>
+                                            <span class="badge bg-success badge-occupancy">
+                                                <i class="fas fa-check-circle me-1"></i> مؤجرة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="property-details.html?id=2" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-property.html?id=2" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="2">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="property-details.html?id=3">
+                                                <img src="https://source.unsplash.com/random/300x200/?building"
+                                                    class="property-img" alt="برج الخليج">
+                                            </a>
+                                        </td>
+                                        <td><a href="property-details.html?id=3">برج الخليج</a></td>
+                                        <td>تل الحصن , اربد</td>
+                                        <td>برج تجاري</td>
+                                        <td>12</td>
+                                        <td class="vacant-units">4</td>
+                                        <td>
+                                            <span class="badge bg-warning badge-occupancy">
+                                                <i class="fas fa-clock me-1"></i> جزئي
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="property-details.html?id=3" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-property.html?id=3" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="3">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="property-details.html?id=4">
+                                                <img src="https://source.unsplash.com/random/300x200/?house"
+                                                    class="property-img" alt="منزل الريان">
+                                            </a>
+                                        </td>
+                                        <td><a href="property-details.html?id=4">منزل الريان</a></td>
+                                        <td>وسط البلد, عمان</td>
+                                        <td>منزل</td>
+                                        <td>1</td>
+                                        <td class="vacant-units">1</td>
+                                        <td>
+                                            <span class="badge bg-danger badge-occupancy">
+                                                <i class="fas fa-times-circle me-1"></i> شاغر
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="property-details.html?id=4" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-property.html?id=4" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="4">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="property-details.html?id=5">
+                                                <img src="https://source.unsplash.com/random/300x200/?office"
+                                                    class="property-img" alt="مكتبة السلام">
+                                            </a>
+                                        </td>
+                                        <td><a href="property-details.html?id=5">مكتبة السلام</a></td>
+                                        <td>الرصيفة, الزرقاء</td>
+                                        <td>مكتب</td>
+                                        <td>1</td>
+                                        <td class="vacant-units">1</td>
+                                        <td>
+                                            <span class="badge bg-info badge-occupancy">
+                                                <i class="fas fa-tools me-1"></i> تحت الصيانة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="property-details.html?id=5" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-property.html?id=5" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="5">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <!-- Add Property Modal -->
+    <div class="modal fade" id="addPropertyModal" tabindex="-1" role="dialog" aria-labelledby="addPropertyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPropertyModalLabel">إضافة عقار جديد</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPropertyForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="propertyName" class="form-label">اسم العقار</label>
+                                <input type="text" class="form-control" id="propertyName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="propertyType" class="form-label">نوع العقار</label>
+                                <select class="form-select" id="propertyType" required>
+                                    <option value="" selected disabled>اختر نوع العقار...</option>
+                                    <option value="apartment">عمارة سكنية</option>
+                                    <option value="villa">فيلا</option>
+                                    <option value="house">منزل</option>
+                                    <option value="office">مكتب</option>
+                                    <option value="commercial">عقار تجاري</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="propertyAddress" class="form-label">العنوان</label>
+                                <input type="text" class="form-control" id="propertyAddress" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="propertyCity" class="form-label">المدينة</label>
+                                <input type="text" class="form-control" id="propertyCity" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="propertyUnits" class="form-label">عدد الوحدات</label>
+                                <input type="number" class="form-control" id="propertyUnits" min="1" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="propertyVacantUnits" class="form-label">الوحدات الشاغرة</label>
+                                <input type="number" class="form-control" id="propertyVacantUnits" min="0">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="propertyYear" class="form-label">سنة البناء</label>
+                                <input type="number" class="form-control" id="propertyYear" min="1900" max="2099">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="propertyDescription" class="form-label">وصف العقار</label>
+                            <textarea class="form-control" id="propertyDescription" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="propertyFeatures" class="form-label">المميزات</label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="featureParking">
+                                        <label class="form-check-label" for="featureParking">موقف سيارات</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="featureElevator">
+                                        <label class="form-check-label" for="featureElevator">مصعد</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="featureGarden">
+                                        <label class="form-check-label" for="featureGarden">حديقة</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="featurePool">
+                                        <label class="form-check-label" for="featurePool">مسبح</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="propertyImages" class="form-label">صور العقار</label>
+                            <input class="form-control" type="file" id="propertyImages" multiple accept="image/*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-primary" type="button" id="savePropertyBtn">حفظ العقار</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Property Modal -->
+    <div class="modal fade" id="deletePropertyModal" tabindex="-1" role="dialog"
+        aria-labelledby="deletePropertyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePropertyModalLabel">تأكيد الحذف</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    هل أنت متأكد أنك تريد حذف هذا العقار؟ سيتم حذف جميع البيانات المرتبطة به.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-danger" type="button" id="confirmDeleteBtn">حذف العقار</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="js/properties-management.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/card-template.js"></script>
+
+</html>

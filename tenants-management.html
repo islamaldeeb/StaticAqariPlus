@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - إدارة المستأجرين</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">إدارة المستأجرين</h1>
+                    <button class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addTenantModal">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> إضافة مستأجر جديد
+                    </button>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row" id="cards-container"></div>
+                <!-- Tenants Table -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">قائمة المستأجرين</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow">
+                                <div class="dropdown-header">خيارات التصدير:</div>
+                                <a class="dropdown-item" href="Report.html?export=tenants&type=excel"><i
+                                        class="fas fa-file-excel me-2 text-success"></i> Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="window.print()"><i
+                                        class="fas fa-print me-2 text-gray-600"></i> طباعة</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="tenantsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>المستأجر</th>
+                                        <th>العقار</th>
+                                        <th>رقم الوحدة</th>
+                                        <th>تاريخ البدء</th>
+                                        <th>تاريخ الانتهاء</th>
+                                        <th>حالة الدفع</th>
+                                        <th>الحالة</th>
+                                        <th>إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+
+                                            <div class="fw-bold"><a href="tenant-details.html?id=1">أحمد محمد</a></div>
+                                            <div class="text-muted small">ahmed@example.com</div>
+                        </div>
+                    </div>
+                    </td>
+                    <td><a href="properties-management.html?property=1">عمارة الأماني</a></td>
+                    <td><a href="properties-management.html?unit=305">305</a></td>
+                    <td>15/06/2024</td>
+                    <td>15/06/2025</td>
+                    <td>
+                        <span class="payment-status status-active">
+                            <i class="fas fa-check-circle me-1"></i> محدث
+                        </span>
+                    </td>
+                    <td>
+                        <span class="payment-status status-active">
+                            <i class="fas fa-check-circle me-1"></i> نشط
+                        </span>
+                    </td>
+                    <td>
+                        <a href="tenant-details.html?id=1" class="btn btn-sm btn-primary" title="عرض التفاصيل">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="edit-tenant.html?id=1" class="btn btn-sm btn-warning" title="تعديل">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                            data-bs-target="#deleteTenantModal" data-tenant-id="1">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+
+                            <div class="fw-bold"><a href="tenant-details.html?id=2">سارة عبدالله</a></div>
+                            <div class="text-muted small">sara@example.com</div>
+                </div>
+            </div>
+            </td>
+            <td><a href="properties-management.html?property=2">فيلا الروضة</a></td>
+            <td>-</td>
+            <td>01/03/2024</td>
+            <td>30/04/2025</td>
+            <td>
+                <span class="payment-status status-pending">
+                    <i class="fas fa-clock me-1"></i> متأخر
+                </span>
+            </td>
+            <td>
+                <span class="payment-status status-active">
+                    <i class="fas fa-check-circle me-1"></i> نشط
+                </span>
+            </td>
+            <td>
+                <a href="tenant-details.html?id=2" class="btn btn-sm btn-primary" title="عرض التفاصيل">
+                    <i class="fas fa-eye"></i>
+                </a>
+                <a href="edit-tenant.html?id=2" class="btn btn-sm btn-warning" title="تعديل">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                    data-bs-target="#deleteTenantModal" data-tenant-id="2">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+
+                    <div class="fw-bold"><a href="tenant-details.html?id=3">خالد سعيد</a></div>
+                    <div class="text-muted small">khaled@example.com</div>
+        </div>
+    </div>
+    </td>
+    <td><a href="properties-management.html?property=3">برج الخليج</a></td>
+    <td><a href="properties-management.html?unit=408">408</a></td>
+    <td>10/01/2024</td>
+    <td>10/01/2025</td>
+    <td>
+        <span class="payment-status status-active">
+            <i class="fas fa-check-circle me-1"></i> محدث
+        </span>
+    </td>
+    <td>
+        <span class="payment-status status-active">
+            <i class="fas fa-check-circle me-1"></i> نشط
+        </span>
+    </td>
+    <td>
+        <a href="tenant-details.html?id=3" class="btn btn-sm btn-primary" title="عرض التفاصيل">
+            <i class="fas fa-eye"></i>
+        </a>
+        <a href="edit-tenant.html?id=3" class="btn btn-sm btn-warning" title="تعديل">
+            <i class="fas fa-edit"></i>
+        </a>
+        <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal" data-bs-target="#deleteTenantModal"
+            data-tenant-id="3">
+            <i class="fas fa-trash"></i>
+        </button>
+    </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>
+
+            <div class="fw-bold"><a href="tenant-details.html?id=4">نورة علي</a></div>
+            <div class="text-muted small">nora@example.com</div>
+            </div>
+            </div>
+        </td>
+        <td><a href="properties-management.html?property=4">منزل الريان</a></td>
+        <td>-</td>
+        <td>15/11/2023</td>
+        <td>15/11/2024</td>
+        <td>
+            <span class="payment-status status-inactive">
+                <i class="fas fa-times-circle me-1"></i> منتهي
+            </span>
+        </td>
+        <td>
+            <span class="payment-status status-inactive">
+                <i class="fas fa-times-circle me-1"></i> غير نشط
+            </span>
+        </td>
+        <td>
+            <a href="tenant-details.html?id=4" class="btn btn-sm btn-primary" title="عرض التفاصيل">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="edit-tenant.html?id=4" class="btn btn-sm btn-warning" title="تعديل">
+                <i class="fas fa-edit"></i>
+            </a>
+            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal" data-bs-target="#deleteTenantModal"
+                data-tenant-id="4">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>
+
+            <div class="fw-bold"><a href="tenant-details.html?id=5">عمر عبدالله</a></div>
+            <div class="text-muted small">omar@example.com</div>
+            </div>
+            </div>
+        </td>
+        <td><a href="properties-management.html?property=5">مكتبة السلام</a></td>
+        <td>-</td>
+        <td>01/09/2024</td>
+        <td>01/09/2025</td>
+        <td>
+            <span class="payment-status status-active">
+                <i class="fas fa-check-circle me-1"></i> محدث
+            </span>
+        </td>
+        <td>
+            <span class="payment-status status-active">
+                <i class="fas fa-check-circle me-1"></i> نشط
+            </span>
+        </td>
+        <td>
+            <a href="tenant-details.html?id=5" class="btn btn-sm btn-primary" title="عرض التفاصيل">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="edit-tenant.html?id=5" class="btn btn-sm btn-warning" title="تعديل">
+                <i class="fas fa-edit"></i>
+            </a>
+            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal" data-bs-target="#deleteTenantModal"
+                data-tenant-id="5">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    </div>
+    </div>
+
+    <!-- Add Tenant Modal -->
+    <div class="modal fade" id="addTenantModal" tabindex="-1" role="dialog" aria-labelledby="addTenantModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTenantModalLabel">إضافة مستأجر جديد</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTenantForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantName" class="form-label">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="tenantName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantEmail" class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" id="tenantEmail" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantPhone" class="form-label">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="tenantPhone" placeholder="079-1234567"
+                                    pattern="07[0-9]{8}" maxlength="11" required oninput="formatPhoneNumber(this)">
+                                <small class="text-muted">يجب أن يبدأ الرقم بـ 07 ويتكون من 10 أرقام </small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantId" class="form-label">رقم الهوية/الإقامة</label>
+                                <input type="text" class="form-control" id="tenantId" placeholder="0123456789"
+                                    pattern="\d{10}" title="يجب إدخال 10 أرقام فقط" maxlength="10" minlength="10"
+                                    required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="tenantProperty" class="form-label">العقار</label>
+                                    <select class="form-select" id="tenantProperty" required>
+                                        <option value="" selected disabled>اختر العقار...</option>
+                                        <option value="1">عمارة الأماني</option>
+                                        <option value="2">فيلا الروضة</option>
+                                        <option value="3">برج الخليج</option>
+                                        <option value="4">منزل الريان</option>
+                                        <option value="5">مكتبة السلام</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="tenantUnit" class="form-label">الوحدة السكنية</label>
+                                    <select class="form-select" id="tenantUnit" required>
+                                        <option value="" selected disabled>اختر الوحدة...</option>
+                                        <option value="101">101</option>
+                                        <option value="102">102</option>
+                                        <option value="201">201</option>
+                                        <option value="202">202</option>
+                                        <option value="301">301</option>
+                                        <option value="302">302</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="startDate" class="form-label">تاريخ بدء العقد</label>
+                                    <input type="date" class="form-control" id="startDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="endDate" class="form-label">تاريخ انتهاء العقد</label>
+                                    <input type="date" class="form-control" id="endDate" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="rentAmount" class="form-label">قيمة الإيجار الشهري</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">د.أ</span>
+                                        <input type="number" class="form-control" id="rentAmount" min="0" required>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tenantNotes" class="form-label">ملاحظات</label>
+                                <textarea class="form-control" id="tenantNotes" rows="3"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tenantDocuments" class="form-label">مستندات المستأجر</label>
+                                <input class="form-control" type="file" id="tenantDocuments" multiple>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-primary" type="button" id="saveTenantBtn">حفظ المستأجر</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Tenant Modal -->
+    <div class="modal fade" id="deleteTenantModal" tabindex="-1" role="dialog" aria-labelledby="deleteTenantModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteTenantModalLabel">تأكيد الحذف</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    هل أنت متأكد أنك تريد حذف هذا المستأجر؟ سيتم حذف جميع البيانات المرتبطة به.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-danger" type="button" id="confirmDeleteTenantBtn">حذف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+    
+    <script src="js/tenants-management.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/card-template.js"></script>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - طلبات الصيانة</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">طلبات الصيانة</h1>
+                    <div>
+                        <button class="btn btn-primary shadow-sm me-2" data-bs-toggle="modal"
+                            data-bs-target="#newMaintenanceModal">
+                            <i class="fas fa-plus fa-sm text-white-50"></i> طلب صيانة جديد
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Content Row -->
+
+                <div class="row" id="cards-container"></div>
+
+                <!-- Maintenance Requests -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">الطلبات السابقة</h6>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="maintenanceTable" width="100%" cellspacing="0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th width="8%">رقم الطلب</th>
+                                        <th width="12%">نوع المشكلة</th>
+                                        <th>الوصف</th>
+                                        <th width="10%">الصور</th>
+                                        <th width="8%">الأولوية</th>
+                                        <th width="10%">تاريخ الطلب</th>
+                                        <th width="12%">الحالة</th>
+                                        <th width="12%">الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#MT-2025-125</td>
+                                        <td>سباكة</td>
+                                        <td>تسرب مياه من تحت حوض المطبخ</td>
+                                        <td>
+                                            <img src="https://source.unsplash.com/random/300x200/?plumbing"
+                                                class="maintenance-img" data-bs-toggle="modal"
+                                                data-bs-target="#imageModal" alt="صورة المشكلة">
+                                        </td>
+                                        <td class="priority-high">عاجل</td>
+                                        <td>15/04/2025</td>
+                                        <td>
+                                            <span class="status-badge status-completed">
+                                                <i class="fas fa-check-circle me-1"></i> مكتمل
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary action-btn" title="عرض التفاصيل"
+                                                data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                                data-id="MT-2025-125">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#MT-2025-126</td>
+                                        <td>كهرباء</td>
+                                        <td>إصلاح مفتاح الإضاءة في غرفة المعيشة</td>
+                                        <td>
+                                            <img src="https://source.unsplash.com/random/300x200/?electricity"
+                                                class="maintenance-img" data-bs-toggle="modal"
+                                                data-bs-target="#imageModal" alt="صورة المشكلة">
+                                        </td>
+                                        <td class="priority-medium">متوسط</td>
+                                        <td>02/04/2025</td>
+                                        <td>
+                                            <span class="status-badge status-in-progress">
+                                                <i class="fas fa-spinner me-1"></i> قيد التنفيذ
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary action-btn" title="عرض التفاصيل"
+                                                data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                                data-id="MT-2025-126">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#MT-2025-127</td>
+                                        <td>تكييف</td>
+                                        <td>المكيف لا يعمل بشكل صحيح ويصدر أصوات غريبة</td>
+                                        <td>
+                                            <img src="https://source.unsplash.com/random/300x200/?ac"
+                                                class="maintenance-img" data-bs-toggle="modal"
+                                                data-bs-target="#imageModal" alt="صورة المشكلة">
+                                        </td>
+                                        <td class="priority-high">عاجل</td>
+                                        <td>05/04/2025</td>
+                                        <td>
+                                            <span class="status-badge status-pending">
+                                                <i class="fas fa-clock me-1"></i> قيد المراجعة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary action-btn" title="عرض التفاصيل"
+                                                data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                                data-id="MT-2025-127">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal" data-property-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <!-- New Maintenance Modal -->
+    <div class="modal fade" id="newMaintenanceModal" tabindex="-1" aria-labelledby="newMaintenanceModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="newMaintenanceModalLabel">طلب صيانة جديد</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="maintenanceForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantName" class="form-label">الاسم </label>
+                                <input type="text" class="form-control" id="tenantName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tenantName" class="form-label">اسم العقار</label>
+                                <input type="text" class="form-control" id="tenantName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+
+                                <label for="issueType" class="form-label">نوع المشكلة <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" id="issueType" required>
+                                    <option value="" selected disabled>اختر نوع المشكلة...</option>
+                                    <option value="plumbing">سباكة</option>
+                                    <option value="electricity">كهرباء</option>
+                                    <option value="ac">تكييف</option>
+                                    <option value="furniture">أثاث</option>
+                                    <option value="paint">دهان</option>
+                                    <option value="cleaning">تنظيف</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="priority" class="form-label">الأولوية <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" id="priority" required>
+                                    <option value="" selected disabled>اختر مستوى الأولوية...</option>
+                                    <option value="low">منخفض</option>
+                                    <option value="medium">متوسط</option>
+                                    <option value="high">عاجل</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="propertyLocation" class="form-label">موقع المشكلة <span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" id="propertyLocation" required>
+                                <option value="" selected disabled>اختر موقع المشكلة...</option>
+                                <option value="living_room">غرفة المعيشة</option>
+                                <option value="kitchen">المطبخ</option>
+                                <option value="bathroom">الحمام</option>
+                                <option value="bedroom1">غرفة النوم الرئيسية</option>
+                                <option value="bedroom2">غرفة النوم الثانية</option>
+                                <option value="balcony">الشرفة</option>
+                                <option value="outside">خارج الوحدة</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="issueDescription" class="form-label">وصف المشكلة <span
+                                    class="text-danger">*</span></label>
+                            <textarea class="form-control" id="issueDescription" rows="4"
+                                placeholder="صف المشكلة بالتفصيل..." required></textarea>
+                            <small class="text-muted">يرجى وصف المشكلة بدقة لتسريع عملية المعالجة</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="issueImages" class="form-label">إرفاق صور للمشكلة (اختياري)</label>
+                            <input class="form-control" type="file" id="issueImages" multiple accept="image/*">
+                            <small class="text-muted">يمكنك رفع حتى 5 صور (JPEG, PNG, حجم كل صورة لا يتجاوز 5MB)</small>
+                            <div class="image-preview mt-2 d-flex flex-wrap" id="imagePreview"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="preferredDate" class="form-label">التاريخ المفضل للزيارة (اختياري)</label>
+                                <input type="date" class="form-control" id="preferredDate" min="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="preferredTime" class="form-label">الوقت المفضل للزيارة (اختياري)</label>
+                                <select class="form-select" id="preferredTime">
+                                    <option value="" selected disabled>اختر الوقت...</option>
+                                    <option value="morning">الصباح (8 ص - 12 ظ)</option>
+                                    <option value="afternoon">بعد الظهر (12 ظ - 4 م)</option>
+                                    <option value="evening">المساء (4 م - 8 م)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="allowEntry" checked>
+                            <label class="form-check-label" for="allowEntry">السماح للفني بالدخول في حالة عدم
+                                التواجد</label>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i> سيتم الرد على طلبك خلال 24 ساعة. للطوارئ يرجى
+                            الاتصال على <a href="tel:+966123456789">0123456789</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-primary" id="submitMaintenanceBtn">
+                        <i class="fas fa-paper-plane me-1"></i> إرسال الطلب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+
+
+    <!-- Details Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="detailsModalLabel">تفاصيل طلب الصيانة <span id="requestNumber"></span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th colspan="2" class="text-center bg-light">معلومات الطلب الأساسية</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="30%"><strong>نوع المشكلة</strong></td>
+                                    <td id="detailType">سباكة</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الأولوية</strong></td>
+                                    <td><span id="detailPriority" class="priority-high">عاجل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>تاريخ الطلب</strong></td>
+                                    <td id="detailDate">15/05/2025</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>حالة الطلب</strong></td>
+                                    <td><span id="detailStatus" class="status-badge status-completed">مكتمل</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered mt-3">
+                            <thead class="table-light">
+                                <tr>
+                                    <th colspan="2" class="text-center bg-light">معلومات الموقع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="30%"><strong>الموقع</strong></td>
+                                    <td id="detailLocation">المطبخ</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الوحدة</strong></td>
+                                    <td id="detailUnit">شقة 203، مبنى A</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>العنوان</strong></td>
+                                    <td id="detailAddress">تلاع العلي، عمان</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered mt-3">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-center bg-light">وصف المشكلة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="detailDescription">تسرب مياه من تحت حوض المطبخ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered mt-3">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-center bg-light">الصور المرفقة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex flex-wrap" id="detailImages">
+                                            <img src="https://source.unsplash.com/random/300x200/?plumbing"
+                                                class="maintenance-img me-2 mb-2" data-bs-toggle="modal"
+                                                data-bs-target="#imageModal" alt="صورة المشكلة">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered mt-3" id="progressSection">
+                            <thead class="table-light">
+                                <tr>
+                                    <th colspan="3" class="text-center bg-light">سير المعالجة</th>
+                                </tr>
+                                <tr>
+                                    <th width="25%">المرحلة</th>
+                                    <th width="25%">التاريخ والوقت</th>
+                                    <th>التفاصيل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>تم الإنشاء</strong></td>
+                                    <td>15/04/2025 10:30 ص</td>
+                                    <td>تم تقديم طلب الصيانة</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>قيد المراجعة</strong></td>
+                                    <td>15/04/2025 11:45 ص</td>
+                                    <td>تم استلام الطلب ومراجعته من قبل الإدارة</td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>تم الإصلاح</strong></td>
+                                    <td>16/04/2025 3:20 م</td>
+                                    <td>تم إصلاح المشكلة بنجاح</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>تم الإغلاق</strong></td>
+                                    <td>16/04/2025 5:45 م</td>
+                                    <td>تم إغلاق الطلب بعد التأكد من الإصلاح</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" id="printDetailsBtn">
+                        <i class="fas fa-print me-1"></i> طباعة التفاصيل
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center p-0">
+                    <img src="" id="modalImage" class="img-fluid" style="max-height: 80vh; width: auto;"
+                        alt="صورة مكبرة">
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <a href="#" class="btn btn-primary" id="downloadImageBtn" download>
+                        <i class="fas fa-download me-1"></i> تحميل الصورة
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/Footer-Tenants.js"></script>
+    <script src="js/Sidebar-Tenants.js"></script>
+    <script src="js/Topbar-Tenants.js"></script>
+    <script src="js/card-tanat-template.js"></script>
+    <script src="js/Maintenance-requests.js"></script>
+</body>
+
+</html>

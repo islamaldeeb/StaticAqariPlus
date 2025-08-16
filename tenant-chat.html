@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - محادثة مع المدير</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+     <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #1cc88a;
+            --danger-color: #e74a3b;
+            --warning-color: #f6c23e;
+        }
+
+        .chat-container {
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .sent {
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .received {
+            background-color: #e9ecef;
+            color: #212529;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .chat-input {
+            border-radius: 20px;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+        }
+
+        .send-btn {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 15px;
+        }
+
+        .status-indicator {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <script src="Sidebar-Tenants.js"></script>
+
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+          
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <div class="row">
+                    <!-- Chat Area -->
+                    <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                <h6 class="m-0 font-weight-bold text-primary">محادثة مع مدير العقار</h6>
+                                <div class="spinner-border spinner-border-sm text-primary" id="loadingSpinner" role="status">
+                                    <span class="visually-hidden">جار التحميل...</span>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="chat-container d-flex flex-column">
+                                    <div class="chat-messages d-flex flex-column" id="chatMessages">
+                                        <div class="initial-loading text-center py-4">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">جار التحميل...</span>
+                                            </div>
+                                            <p class="mt-2">جاري تحميل المحادثة...</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Message Input -->
+                                    <div class="p-3 border-top">
+                                        <form class="d-flex" id="messageForm">
+                                            <input type="text" class="form-control me-2 chat-input" id="messageInput" placeholder="اكتب رسالتك هنا...">
+                                            <button type="submit" class="btn btn-primary send-btn" id="sendButton">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="js/Footer-Tenants.js"></script>
+    <script src="js/Sidebar-Tenants.js"></script>
+    <script src="js/Topbar-Tenants.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // التهيئة الفعلية لـ Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDWy36gBf41kVn-mExwiV3bQ18wrBy3mQ8",
+            authDomain: "aqariplus-chat-a77b0.firebaseapp.com",
+            projectId: "aqariplus-chat-a77b0",
+            storageBucket: "aqariplus-chat-a77b0.appspot.com",
+            messagingSenderId: "638941550939",
+            appId: "1:638941550939:web:60181987d1e1108f01227e"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+
+        // متغيرات حالة المحادثة
+        let currentUserId = null;
+        const managerId = "manager_default_id";
+        let messagesRef = null;
+
+        // عناصر واجهة المستخدم
+        const chatMessages = document.getElementById('chatMessages');
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        // دالة لإنشاء معرف محادثة موحد
+        function getConversationId(id1, id2) {
+            return id1 < id2 ? `conversation_${id1}_${id2}` : `conversation_${id2}_${id1}`;
+        }
+
+        // مصادقة المستخدم
+        auth.signInAnonymously()
+            .then(() => {
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        currentUserId = user.uid;
+                        // تسجيل المستأجر في قاعدة البيانات
+                        database.ref(`tenants/${currentUserId}`).set({
+                            name: 'مستأجر جديد',
+                            lastMessage: '',
+                            lastMessageTime: 0,
+                            unreadCount: 0
+                        });
+                        loadMessages();
+                    } else {
+                        console.log("User is signed out");
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Authentication error:", error);
+                showError("حدث خطأ في المصادقة. يرجى تحديث الصفحة.");
+            });
+
+        // تحميل الرسائل
+        function loadMessages() {
+            loadingSpinner.style.display = 'inline-block';
+            
+            // إلغاء أي اشتراكات سابقة
+            if (messagesRef) {
+                messagesRef.off();
+            }
+            
+            messagesRef = database.ref(`conversations/${getConversationId(currentUserId, managerId)}/messages`);
+            
+            messagesRef.orderByChild('timestamp').on('value', (snapshot) => {
+                chatMessages.innerHTML = '';
+                const messages = snapshot.val();
+                
+                if (!messages || Object.keys(messages).length === 0) {
+                    chatMessages.innerHTML = '<div class="empty-state"><i class="fas fa-comment-slash fa-4x mb-3"></i> <p>لا توجد رسائل بعد. ابدأ المحادثة الآن!</p></div>';
+                    loadingSpinner.style.display = 'none';
+                    return;
+                }
+                
+                // تحويل الرسائل إلى مصفوفة وترتيبها
+                const messagesArray = [];
+                snapshot.forEach(messageSnapshot => {
+                    messagesArray.push(messageSnapshot.val());
+                });
+                
+                // عرض الرسائل
+                messagesArray.forEach(message => {
+                    addMessageToChat(message, message.senderId === currentUserId);
+                });
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                loadingSpinner.style.display = 'none';
+            }, error => {
+                console.error("Error loading messages:", error);
+                chatMessages.innerHTML = '<div class="alert alert-danger text-center">حدث خطأ في تحميل الرسائل. يرجى المحاولة لاحقاً.</div>';
+                loadingSpinner.style.display = 'none';
+            });
+        }
+
+        // إضافة رسالة إلى الدردشة
+        function addMessageToChat(message, isSent) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message p-3 ${isSent ? 'sent' : 'received'}`;
+            
+            const now = new Date(message.timestamp);
+            const timeString = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-text">${message.text}</div>
+                <div class="message-time text-end mt-1">${isSent ? 'أنت' : 'مدير العقار'} - ${timeString}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+        }
+
+        // إرسال رسالة جديدة
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const messageText = messageInput.value.trim();
+            
+            if (messageText && currentUserId) {
+                sendButton.disabled = true;
+                loadingSpinner.style.display = 'inline-block';
+                
+                const timestamp = Date.now();
+                const newMessageRef = database.ref(`conversations/${getConversationId(currentUserId, managerId)}/messages`).push();
+                
+                newMessageRef.set({
+                    text: messageText,
+                    senderId: currentUserId,
+                    senderName: 'المستأجر',
+                    timestamp: timestamp
+                })
+                .then(() => {
+                    messageInput.value = '';
+                    
+                    // تحديث آخر رسالة في قائمة المستأجرين
+                    database.ref(`tenants/${currentUserId}`).update({
+                        lastMessage: messageText,
+                        lastMessageTime: timestamp
+                    });
+                    
+                    // زيادة عدد الرسائل غير المقروءة للمدير
+                    database.ref(`tenants/${currentUserId}`).update({
+                        unreadCount: firebase.database.ServerValue.increment(1)
+                    });
+                })
+                .catch(error => {
+                    console.error("Error sending message:", error);
+                    alert("حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.");
+                })
+                .finally(() => {
+                    sendButton.disabled = false;
+                    loadingSpinner.style.display = 'none';
+                });
+            }
+        });
+
+        // عرض رسالة خطأ
+        function showError(message) {
+            chatMessages.innerHTML = `<div class="alert alert-danger text-center">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

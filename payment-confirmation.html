@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الدفع - Aqari Plus</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --success-color: #1cc88a;
+        }
+        .receipt-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .receipt-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .receipt-body {
+            padding: 2rem;
+        }
+        .payment-success {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 1rem;
+        }
+        .transaction-details {
+            border-top: 1px dashed #ddd;
+            border-bottom: 1px dashed #ddd;
+            padding: 1.5rem 0;
+            margin: 1.5rem 0;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .btn-print {
+            background-color: var(--primary-color);
+            border: none;
+        }
+        .btn-print:hover {
+            background-color: #3a5bc7;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <div class="receipt-header">
+            <h3><i class="fas fa-receipt"></i> إيصال الدفع</h3>
+            <p class="mb-0">Aqari Plus - إدارة العقارات</p>
+        </div>
+        
+        <div class="receipt-body">
+            <div class="payment-success">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>تمت عملية الدفع بنجاح</h3>
+                <p class="text-muted">شكراً لثقتك بنا، تم استلام دفعتك بنجاح</p>
+            </div>
+            
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">رقم المرجع:</span>
+                    <span>PMT-2023-78542</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">تاريخ الدفع:</span>
+                    <span id="payment-date">15 مايو 2023 - 10:45 ص</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">طريقة الدفع:</span>
+                    <span>بطاقة ماستركارد - **** **** **** 4242</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">المستأجر:</span>
+                    <span>أحمد محمد</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">العقار:</span>
+                    <span>عمارة الأماني - الوحدة 305</span>
+                </div>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">المبلغ الإجمالي:</span>
+                <span class="fw-bold fs-5">600 د.أ</span>
+            </div>
+            
+            <div class="mt-4 d-flex justify-content-between">
+                <button onclick="window.print()" class="btn btn-print text-white">
+                    <i class="fas fa-print me-2"></i> طباعة الإيصال
+                </button>
+                <a href="index.html" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-2"></i> العودة للرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // عرض التاريخ والوقت الحاليين
+        const now = new Date();
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        document.getElementById('payment-date').textContent = now.toLocaleDateString('ar-EG', options);
+        
+        // يمكنك إضافة المزيد من التفاصيل الديناميكية هنا
+    </script>
+</body>
+</html>

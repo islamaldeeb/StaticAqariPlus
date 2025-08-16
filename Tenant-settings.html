@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - الإعدادات</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">الإعدادات</h1>
+                </div>
+
+                <!-- Settings Tabs -->
+                <ul class="nav nav-tabs settings-tabs mb-4" id="settingsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab">
+                            <i class="fas fa-user me-2"></i> الملف الشخصي
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security"
+                            type="button" role="tab">
+                            <i class="fas fa-lock me-2"></i> الأمان
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="notifications-tab" data-bs-toggle="tab"
+                            data-bs-target="#notifications" type="button" role="tab">
+                            <i class="fas fa-bell me-2"></i> الإشعارات
+                        </button>
+                    </li>
+
+                </ul>
+
+                <!-- Settings Content -->
+                <div class="tab-content" id="settingsTabsContent">
+                    <!-- Profile Tab -->
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title"><i class="fas fa-user me-2"></i> المعلومات الشخصية</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="firstName" class="form-label">الاسم الأول</label>
+                                                    <input type="text" class="form-control" id="firstName" value="أحمد"
+                                                        readonly>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="lastName" class="form-label">الاسم الأخير</label>
+                                                    <input type="text" class="form-control" id="lastName" value="محمد"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="email" class="form-label">البريد الإلكتروني </label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        value="ahmed@example.com" readonly>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="phone" class="form-label">رقم الهاتف</label>
+                                                    <input type="tel" class="form-control" id="phone" value="0791234567"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="address" class="form-label">العنوان</label>
+                                                <input type="text" class="form-control" id="address"
+                                                    value="عمان - جبل عمان" readonly>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title"><i class="fas fa-home me-2"></i> معلومات الإيجار</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">العقار</label>
+                                        <input type="text" class="form-control" value="عمارة الأماني" readonly>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">الوحدة السكنية</label>
+                                        <input type="text" class="form-control" value="الوحدة 305" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">تاريخ بدء العقد</label>
+                                        <input type="text" class="form-control" value="15/06/2023" readonly>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">تاريخ انتهاء العقد</label>
+                                        <input type="text" class="form-control" value="15/06/2024" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">قيمة الإيجار الشهري</label>
+                                        <input type="text" class="form-control" value="600 د.أ" readonly>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane fade" id="security" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title"><i class="fas fa-lock me-2"></i> تغيير كلمة المرور</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">كلمة المرور الحالية</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newPassword" class="form-label">كلمة المرور الجديدة</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                        <div class="form-text">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">تأكيد كلمة المرور
+                                            الجديدة</label>
+                                        <input type="password" class="form-control" id="confirmPassword">
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save me-2"></i> تغيير كلمة المرور
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div class="tab-pane fade" id="notifications" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title"><i class="fas fa-bell me-2"></i> إعدادات الإشعارات</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="section-title">إشعارات الدفع</h6>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="paymentReminders" checked>
+                                    <label class="form-check-label" for="paymentReminders">تذكيرات بدفع الإيجار</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="paymentReceipts" checked>
+                                    <label class="form-check-label" for="paymentReceipts">إيصالات الدفع</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="latePayments" checked>
+                                    <label class="form-check-label" for="latePayments">تنبيهات التأخير في الدفع</label>
+                                </div>
+
+                                <h6 class="section-title">إشعارات الصيانة</h6>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="maintenanceUpdates" checked>
+                                    <label class="form-check-label" for="maintenanceUpdates">تحديثات طلبات
+                                        الصيانة</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="maintenanceCompletion" checked>
+                                    <label class="form-check-label" for="maintenanceCompletion">إشعارات إكمال
+                                        الصيانة</label>
+                                </div>
+
+                                <h6 class="section-title">إشعارات العقد</h6>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="contractRenewal" checked>
+                                    <label class="form-check-label" for="contractRenewal">تذكيرات بتجديد العقد</label>
+                                </div>
+
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i> حفظ التغييرات
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/Footer-Tenants.js"></script>
+    <script src="js/Sidebar-Tenants.js"></script>
+    <script src="js/Topbar-Tenants.js"></script>
+
+</body>
+
+</html>

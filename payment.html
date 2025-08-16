@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - إدارة الدفعات</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <!-- Datepicker -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">إدارة الدفعات</h1>
+                    <div>
+                        <button class="btn btn-primary shadow-sm" data-bs-toggle="modal"
+                            data-bs-target="#addPaymentModal">
+                            <i class="fas fa-plus fa-sm text-white-50"></i> تسجيل دفعة جديدة
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row" id="cards-container"></div>
+                <!-- Payments Table -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">سجل الدفعات</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow">
+                                <div class="dropdown-header">خيارات التصدير:</div>
+                                <a class="dropdown-item" href="Report.html?export=payments&type=excel"><i
+                                        class="fas fa-file-excel me-2 text-success"></i> Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="window.print()"><i
+                                        class="fas fa-print me-2 text-gray-600"></i> طباعة</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="paymentsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>المستأجر</th>
+                                        <th>العقار</th>
+                                        <th>الوحدة</th>
+
+                                        <th>المبلغ</th>
+                                        <th>تاريخ الاستحقاق</th>
+                                        <th>تاريخ الدفع</th>
+                                        <th>الحالة</th>
+                                        <th>إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><a href="tenants-management.html?tenant=1">أحمد محمد</a></td>
+                                        <td><a href="properties-management.html?property=1">عمارة الأماني</a></td>
+                                        <td>305</td>
+
+                                        <td class="amount-paid">500 د.أ</td>
+                                        <td>03/03/2025</td>
+                                        <td>03/04/2025</td>
+                                        <td>
+                                            <span class="payment-status status-paid">
+                                                <i class="fas fa-check-circle me-1"></i> مدفوعة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="payment-details.html?id=1" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-payment.html?id=1" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePaymentModal" data-payment-id="1">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><a href="tenants-management.html?tenant=2">سارة عبدالله</a></td>
+                                        <td><a href="properties-management.html?property=2">فيلا الروضة</a></td>
+                                        <td>-</td>
+
+                                        <td class="amount-due">600 د.أ</td>
+                                        <td>05/03/2025</td>
+                                        <td>-</td>
+                                        <td>
+                                            <span class="payment-status status-overdue">
+                                                <i class="fas fa-exclamation-circle me-1"></i> متأخرة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="payment-details.html?id=2" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><a href="tenants-management.html?tenant=3">خالد سعيد</a></td>
+                                        <td><a href="properties-management.html?property=3">برج الخليج</a></td>
+                                        <td>408</td>
+
+                                        <td class="amount-paid">450 د.أ</td>
+                                        <td>08/03/2025</td>
+                                        <td>08/04/2025</td>
+                                        <td>
+                                            <span class="payment-status status-paid">
+                                                <i class="fas fa-check-circle me-1"></i> مدفوعة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="payment-details.html?id=3" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-payment.html?id=3" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePaymentModal" data-payment-id="3">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><a href="tenants-management.html?tenant=4">نورة علي</a></td>
+                                        <td><a href="properties-management.html?property=4">منزل الريان</a></td>
+                                        <td>-</td>
+
+                                        <td class="amount-due">550 د.أ</td>
+                                        <td>28/03/2025</td>
+                                        <td>-</td>
+                                        <td>
+                                            <span class="payment-status status-pending">
+                                                <i class="fas fa-clock me-1"></i> معلقة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="payment-details.html?id=4" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><a href="tenants-management.html?tenant=5">عمر عبدالله</a></td>
+                                        <td><a href="properties-management.html?property=5">مكتبة السلام</a></td>
+                                        <td>-</td>
+
+                                        <td class="amount-paid">700 د.أ</td>
+                                        <td>01/03/2025</td>
+                                        <td>01/04/2025</td>
+                                        <td>
+                                            <span class="payment-status status-paid">
+                                                <i class="fas fa-check-circle me-1"></i> مدفوعة
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="payment-details.html?id=5" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-payment.html?id=5" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف" data-bs-toggle="modal"
+                                                data-bs-target="#deletePaymentModal" data-payment-id="5">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <!-- Add Payment Modal -->
+    <div class="modal fade" id="addPaymentModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPaymentModalLabel">تسجيل دفعة جديدة</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPaymentForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="paymentTenant" class="form-label">المستأجر</label>
+                                <select class="form-select" id="paymentTenant" required>
+                                    <option value="" selected disabled>اختر المستأجر...</option>
+                                    <option value="1">أحمد محمد - عمارة الأماني (305)</option>
+                                    <option value="2">سارة عبدالله - فيلا الروضة</option>
+                                    <option value="3">خالد سعيد - برج الخليج (408)</option>
+                                    <option value="4">نورة علي - منزل الريان</option>
+                                    <option value="5">عمر عبدالله - مكتبة السلام</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="paymentType" class="form-label">نوع الدفعة</label>
+                                <select class="form-select" id="paymentType" required>
+                                    <option value="" selected disabled>اختر نوع الدفعة...</option>
+                                    <option value="rent">إيجار</option>
+                                    <option value="deposit">عربون</option>
+                                    <option value="maintenance">صيانة</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="paymentAmount" class="form-label">المبلغ (د.أ)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="paymentAmount" min="0" step="0.01"
+                                        required>
+                                    <span class="input-group-text">د.أ</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="paymentDate" class="form-label">تاريخ الدفع</label>
+                                <input type="date" class="form-control" id="paymentDate" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12 mb-3">
+                                <label for="paymentReceipt" class="form-label">رقم الإيصال</label>
+                                <input type="number" class="form-control" id="paymentReceipt" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="paymentNotes" class="form-label">ملاحظات</label>
+                            <textarea class="form-control" id="paymentNotes" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="paymentAttachment" class="form-label">إرفاق مستند</label>
+                            <input class="form-control" type="file" id="paymentAttachment">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-primary" type="button" id="savePaymentBtn">حفظ الدفعة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Delete Payment Modal -->
+    <div class="modal fade" id="deletePaymentModal" tabindex="-1" role="dialog"
+        aria-labelledby="deletePaymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePaymentModalLabel">تأكيد الحذف</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    هل أنت متأكد أنك تريد حذف هذه الدفعة؟ هذا الإجراء لا يمكن التراجع عنه.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-danger" type="button" id="confirmDeleteBtn">حذف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Datepicker -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/card-template.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+
+</body>
+
+</html>

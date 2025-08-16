@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - الإشعارات</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- DataTables Arabic Translation -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">إدارة الإشعارات</h1>
+                    <button class="btn btn-primary shadow-sm" data-bs-toggle="modal"
+                        data-bs-target="#addNotificationModal">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> إشعار جديد
+                    </button>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row" id="cards-container"></div>
+                <!-- Notifications Table -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">قائمة الإشعارات</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow">
+                                <div class="dropdown-header">خيارات التصدير:</div>
+                                <a class="dropdown-item" href="Report.html?export=notifications&type=excel"><i
+                                        class="fas fa-file-excel me-2 text-success"></i> Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="window.print()"><i
+                                        class="fas fa-print me-2 text-gray-600"></i> طباعة</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="notificationsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>نوع الإشعار</th>
+                                        <th>الرسالة</th>
+                                        <th>المستلم</th>
+                                        <th>تاريخ الإرسال</th>
+                                        <th>الحالة</th>
+                                        <th>إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="unread-notification">
+                                        <td>1</td>
+                                        <td><span class="badge bg-primary">دفع إيجار</span></td>
+                                        <td>تذكير بدفع إيجار شهر مارس</td>
+                                        <td><a href="tenants-management.html?tenant=1">أحمد محمد (الوحدة 305)</a></td>
+                                        <td>15/03/2025</td>
+                                        <td><span class="badge bg-warning">غير مقروء</span></td>
+                                        <td>
+                                            <a href="notification-details.html?id=1" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف"
+                                                onclick="deleteNotification(1)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><span class="badge bg-success">دفع مستلم</span></td>
+                                        <td>تم استلام دفعة إيجار بقيمة 500 د.أ</td>
+                                        <td><a href="tenants-management.html?tenant=2">سارة عبدالله (الوحدة 102)</a>
+                                        </td>
+                                        <td>10/03/2025</td>
+                                        <td><span class="badge bg-success">مقروء</span></td>
+                                        <td>
+                                            <a href="notification-details.html?id=2" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف"
+                                                onclick="deleteNotification(2)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><span class="badge bg-danger">صيانة عاجلة</span></td>
+                                        <td>طلب صيانة عاجل في الوحدة 305</td>
+                                        <td><a href="tenants-management.html?tenant=1">أحمد محمد (الوحدة 305)</a></td>
+                                        <td>05/03/2025</td>
+                                        <td><span class="badge bg-success">مقروء</span></td>
+                                        <td>
+                                            <a href="notification-details.html?id=3" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف"
+                                                onclick="deleteNotification(3)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="unread-notification">
+                                        <td>4</td>
+                                        <td><span class="badge bg-info">تجديد عقد</span></td>
+                                        <td>عقد الإيجار سينتهي خلال 30 يوم</td>
+                                        <td><a href="tenants-management.html?tenant=3">خالد سعيد (الوحدة 408)</a></td>
+                                        <td>01/03/2025</td>
+                                        <td><span class="badge bg-warning">غير مقروء</span></td>
+                                        <td>
+                                            <a href="notification-details.html?id=4" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف"
+                                                onclick="deleteNotification(4)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><span class="badge bg-secondary">عام</span></td>
+                                        <td>صيانة دورية للمبنى يوم الخميس</td>
+                                        <td>جميع المستأجرين</td>
+                                        <td>28/02/2025</td>
+                                        <td><span class="badge bg-success">مقروء</span></td>
+                                        <td>
+                                            <a href="notification-details.html?id=5" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" title="حذف"
+                                                onclick="deleteNotification(5)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Notification Settings -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">إعدادات الإشعارات</h6>
+                    </div>
+                    <div class="card-body">
+                        <form id="notificationSettingsForm">
+                            <div class="mb-3">
+                                <label class="form-label">تفعيل أنواع الإشعارات</label>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="enablePaymentNotifications"
+                                        checked>
+                                    <label class="form-check-label" for="enablePaymentNotifications">
+                                        إشعارات الدفع والإيجار
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="enableMaintenanceNotifications"
+                                        checked>
+                                    <label class="form-check-label" for="enableMaintenanceNotifications">
+                                        إشعارات الصيانة
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="enableContractNotifications"
+                                        checked>
+                                    <label class="form-check-label" for="enableContractNotifications">
+                                        إشعارات العقود
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="enableGeneralNotifications">
+                                    <label class="form-check-label" for="enableGeneralNotifications">
+                                        إشعارات عامة
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary">حفظ الإعدادات</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <!-- Add Notification Modal -->
+    <div class="modal fade" id="addNotificationModal" tabindex="-1" role="dialog"
+        aria-labelledby="addNotificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNotificationModalLabel">إرسال إشعار جديد</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addNotificationForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="notificationType" class="form-label">نوع الإشعار</label>
+                                <select class="form-select" id="notificationType" required>
+                                    <option value="" selected disabled>اختر نوع الإشعار...</option>
+                                    <option value="payment">دفع إيجار</option>
+                                    <option value="maintenance">صيانة</option>
+                                    <option value="contract">عقد إيجار</option>
+                                    <option value="general">عام</option>
+                                    <option value="urgent">عاجل</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="notificationPriority" class="form-label">الأولوية</label>
+                                <select class="form-select" id="notificationPriority" required>
+                                    <option value="normal">عادي</option>
+                                    <option value="high">مرتفع</option>
+                                    <option value="urgent">عاجل</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notificationRecipients" class="form-label">المستلمون</label>
+                            <select class="form-select" id="notificationRecipients" multiple required>
+                                <option value="all">جميع المستأجرين</option>
+                                <option value="1">أحمد محمد - الوحدة 305</option>
+                                <option value="2">سارة عبدالله - الوحدة 102</option>
+                                <option value="3">خالد سعيد - الوحدة 408</option>
+                                <option value="4">نورة علي - منزل الريان</option>
+                                <option value="5">عمر عبدالله - مكتبة السلام</option>
+                            </select>
+                            <div class="form-text">اضغط Ctrl لاختيار أكثر من مستلم</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notificationSubject" class="form-label">عنوان الإشعار</label>
+                            <input type="text" class="form-control" id="notificationSubject" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notificationMessage" class="form-label">نص الإشعار</label>
+                            <textarea class="form-control" id="notificationMessage" rows="5" required></textarea>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                    <button class="btn btn-primary" type="button" id="sendNotificationBtn">إرسال الإشعار</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topbar.js"></script>
+    <script src="js/card-template.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - إدارة الصيانة</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">إدارة الصيانة</h1>
+                    <button class="btn btn-primary shadow-sm" data-bs-toggle="modal"
+                        data-bs-target="#addMaintenanceModal">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> إضافة طلب صيانة
+                    </button>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row" id="cards-container"></div>
+                <!-- Maintenance Requests -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">طلبات الصيانة</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow">
+                                <div class="dropdown-header">خيارات التصدير:</div>
+                                <a class="dropdown-item" href="Report.html?export=maintenance&type=excel"><i
+                                        class="fas fa-file-excel me-2 text-success"></i> Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="window.print()"><i
+                                        class="fas fa-print me-2 text-gray-600"></i> طباعة</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="maintenanceTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>المستأجر</th>
+                                        <th>العقار</th>
+                                        <th>نوع المشكلة</th>
+                                        <th>تاريخ الطلب</th>
+                                        <th>الأولوية</th>
+                                        <th>الحالة</th>
+                                        <th> </th>
+                                        <th>إجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><a href="tenants-management.html?tenant=1">أحمد محمد</a></td>
+                                        <td><a href="properties-management.html?property=305">عمارة الأماني - 305</a>
+                                        </td>
+                                        <td>تسرب مياه</td>
+                                        <td>28/3/2025</td>
+                                        <td><span class="badge bg-danger">عاجل</span></td>
+                                        <td><span class="badge bg-success">مكتمل</span></td>
+                                        <td><a href="technicians.html?id=1"> </a></td>
+                                        <td>
+                                            <a href="maintenance-details.html?id=1" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-maintenance.html?id=1" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><a href="tenants-management.html?tenant=2">سارة عبدالله</a></td>
+                                        <td><a href="properties-management.html?property=102">فيلا الروضة</a></td>
+                                        <td>مكيف هواء</td>
+                                        <td>29/3/2025</td>
+                                        <td><span class="badge bg-warning">متوسط</span></td>
+                                        <td><span class="badge bg-primary">قيد التنفيذ</span></td>
+                                        <td><a href="technicians.html?id=2"> </a></td>
+                                        <td>
+                                            <a href="maintenance-details.html?id=2" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-maintenance.html?id=2" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><a href="tenants-management.html?tenant=3">خالد سعيد</a></td>
+                                        <td><a href="properties-management.html?property=408">برج الخليج - 408</a></td>
+                                        <td>كهرباء</td>
+                                        <td>05/4/2025</td>
+                                        <td><span class="badge bg-secondary">عادي</span></td>
+                                        <td><span class="badge bg-info">قيد المراجعة</span></td>
+                                        <td></td>
+                                        <td>
+                                            <a href="maintenance-details.html?id=3" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-maintenance.html?id=3" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><a href="tenants-management.html?tenant=4">نورة علي</a></td>
+                                        <td><a href="properties-management.html?property=201">منزل الريان</a></td>
+                                        <td>أثاث</td>
+                                        <td>07/4/2025</td>
+                                        <td><span class="badge bg-secondary">عادي</span></td>
+                                        <td><span class="badge bg-success">مكتمل</span></td>
+                                        <td><a href="technicians.html?id=3"></a></td>
+                                        <td>
+                                            <a href="maintenance-details.html?id=4" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-maintenance.html?id=4" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><a href="tenants-management.html?tenant=5">عمر عبدالله</a></td>
+                                        <td><a href="properties-management.html?property=105">مكتبة السلام</a></td>
+                                        <td>سباكة</td>
+                                        <td>08/4/2025</td>
+                                        <td><span class="badge bg-danger">عاجل</span></td>
+                                        <td><span class="badge bg-primary">قيد التنفيذ</span></td>
+                                        <td><a href="technicians.html?id=4"> </a></td>
+                                        <td>
+                                            <a href="maintenance-details.html?id=5" class="btn btn-sm btn-primary"
+                                                title="عرض التفاصيل">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit-maintenance.html?id=5" class="btn btn-sm btn-warning"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Footer -->
+                <div id="footer-container"></div>
+            </div>
+        </div>
+
+        <!-- Add Maintenance Modal -->
+        <div class="modal fade" id="addMaintenanceModal" tabindex="-1" role="dialog"
+            aria-labelledby="addMaintenanceModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addMaintenanceModalLabel">إضافة طلب صيانة</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addMaintenanceForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="maintenanceTenant" class="form-label">المستأجر</label>
+                                    <select class="form-select" id="maintenanceTenant" required>
+                                        <option value="" selected disabled>اختر المستأجر...</option>
+                                        <option value="1">أحمد محمد - عمارة الأماني (305)</option>
+                                        <option value="2">سارة عبدالله - فيلا الروضة</option>
+                                        <option value="3">خالد سعيد - برج الخليج (408)</option>
+                                        <option value="4">نورة علي - منزل الريان</option>
+                                        <option value="5">عمر عبدالله - مكتبة السلام</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="maintenanceType" class="form-label">نوع المشكلة</label>
+                                    <select class="form-select" id="maintenanceType" required>
+                                        <option value="" selected disabled>اختر نوع المشكلة...</option>
+                                        <option value="plumbing">سباكة</option>
+                                        <option value="electricity">كهرباء</option>
+                                        <option value="ac">تكييف</option>
+                                        <option value="furniture">أثاث</option>
+                                        <option value="other">أخرى</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="maintenanceDescription" class="form-label">وصف المشكلة</label>
+                                <textarea class="form-control" id="maintenanceDescription" rows="3" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="maintenancePriority" class="form-label">الأولوية</label>
+                                    <select class="form-select" id="maintenancePriority" required>
+                                        <option value="low">عادي</option>
+                                        <option value="medium">متوسط</option>
+                                        <option value="high">عاجل</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="maintenanceImages" class="form-label">إرفاق صور (اختياري)</label>
+                                    <input class="form-control" type="file" id="maintenanceImages" multiple
+                                        accept="image/*">
+                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                        <button class="btn btn-primary" type="button" id="saveMaintenanceBtn">حفظ الطلب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Technician Modal -->
+        <div class="modal fade" id="addTechnicianModal" tabindex="-1" role="dialog"
+            aria-labelledby="addTechnicianModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTechnicianModalLabel">إضافة فني جديد</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addTechnicianForm">
+                            <div class="mb-3">
+                                <label for="technicianName" class="form-label">اسم الفني</label>
+                                <input type="text" class="form-control" id="technicianName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="technicianSpecialty" class="form-label">التخصص</label>
+                                <input type="text" class="form-control" id="technicianSpecialty" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="technicianPhone" class="form-label">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="technicianPhone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="technicianImage" class="form-label">صورة الفني (اختياري)</label>
+                                <input class="form-control" type="file" id="technicianImage" accept="image/*">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">إلغاء</button>
+                        <button class="btn btn-primary" type="button" id="saveTechnicianBtn">حفظ الفني</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Modal-->
+
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <!-- DataTables -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+        <script src="js/maintenance.js"></script>
+        <script src="js/footer.js"></script>
+        <script src="js/sidebar.js"></script>
+        <script src="js/topbar.js"></script>
+        <script src="js/card-template.js"></script>
+</body>
+
+</html>

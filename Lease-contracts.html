@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - عقود الإيجار</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .status-expired {
+            background-color: rgba(231, 74, 59, 0.1);
+            color: var(--danger-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">عقود الإيجار</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <!-- Current Contract -->
+                    <div class="col-lg-12 mb-4">
+                        <div class="card contract-card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">العقد الحالي</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-end">
+                                                <span class="text-primary">عمارة الأماني - الوحدة 305</span>
+
+                                            </th>
+                                            <th class="text-start">
+                                                <span class="contract-status status-active">
+                                                    <i class="fas fa-check-circle me-2"></i> نشط
+                                                </span>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>تاريخ البدء:</strong> 15/06/2024</td>
+                                            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>تلاع العلي،عمان
+                                            </p>
+                                            <td style="text-align: left"><strong>قيمة الإيجار:</strong> 600 د.أ</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>تاريخ الانتهاء:</strong> 15/06/2025</td>
+                                            <td style="text-align: left"><strong>دفعة الضمان:</strong> 1,000 د.أ</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                                <div class="mb-3">
+                                    <h6 class="text-primary">شروط العقد</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle text-success me-2"></i> الدفع قبل اليوم الخامس
+                                            من كل شهر</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i> إخطار قبل 60 يومًا
+                                            للتجديد</li>
+                                        <li><i class="fas fa-check-circle text-success me-2"></i> الصيانة الدورية
+                                            مسؤولية المالك</li>
+                                    </ul>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-primary" onclick="window.print()">
+                                        <i class="fas fa-print me-2"></i> طباعة العقد
+                                    </button>
+                                    <a class="btn btn-outline-secondary" href="contracts/AQ-2023-305.pdf"
+                                        download="عقد_الإيجار_عمارة_الأماني.pdf">
+                                        <i class="fas fa-download me-2"></i> تحميل PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contract Renewal -->
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0">تجديد العقد</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> ينتهي عقدك الحالي في
+                                    <strong>15/06/2025</strong>. يمكنك طلب التجديد قبل 60 يومًا من تاريخ الانتهاء.
+                                </div>
+
+                                <form id="renewalForm">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="renewalPeriod" class="form-label">مدة التجديد</label>
+                                            <select class="form-select" id="renewalPeriod">
+                                                <option value="1">سنة واحدة</option>
+                                                <option value="2">سنتين</option>
+                                                <option value="3">3 سنوات</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="newRentAmount" class="form-label">قيمة الإيجار الجديدة</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="newRentAmount"
+                                                    value="600">
+                                                <span class="input-group-text">د.أ</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="renewalDate" class="form-label">تاريخ البدء الجديد</label>
+                                            <input type="text" class="form-control" id="renewalDate" value="15/06/2025"
+                                                readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="renewalNotes" class="form-label">ملاحظات إضافية</label>
+                                        <textarea class="form-control" id="renewalNotes" rows="2"
+                                            placeholder="أي ملاحظات أو طلبات خاصة بالتجديد..."></textarea>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-paper-plane me-2"></i> إرسال طلب التجديد
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/Footer-Tenants.js"></script>
+    <script src="js/Sidebar-Tenants.js"></script>
+    <script src="js/Topbar-Tenants.js"></script>
+    
+    <script>
+
+
+        // Handle contract renewal form submission
+        document.getElementById('renewalForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('تم إرسال طلب تجديد العقد بنجاح. سيتم التواصل معك قريبًا لتأكيد التفاصيل.');
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>

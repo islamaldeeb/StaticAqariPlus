@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqari Plus - الصفحة الرئيسية</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS الخاص بالتطبيق -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <!-- Sidebar Container -->
+
+
+        <!-- Content Wrapper -->
+        <div class="flex-grow-1">
+            <!-- Topbar -->
+            <div id="topbar-container"></div>
+
+            <!-- Main Content -->
+            <div class="container-fluid main-content">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">مرحباً أحمد محمد</h1>
+                    
+                </div>
+
+                <!-- Content Row -->
+                <div class="row equal-height">
+                    <div class="row" id="cards-container"></div>
+                    <!-- Payment Section -->
+                    <div class="col-lg-6 mb-4">
+                        <!-- Payment History -->
+                        <div class="card shadow mb-4 h-100">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">سجل الدفعات</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>التاريخ</th>
+                                                <th>المبلغ</th>
+                                                <th>الطريقة</th>
+                                                <th>الحالة</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="payment-details.html?id=PY-2025-003">05/03/2025</a></td>
+                                                <td>600 د.أ</td>
+                                                <td>بطاقة ائتمانية</td>
+                                                <td><span class="badge bg-success">مكتمل</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="payment-details.html?id=PY-2025-002">05/02/2025</a></td>
+                                                <td>600 د.أ</td>
+                                                <td>حوالة بنكية</td>
+                                                <td><span class="badge bg-success">مكتمل</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="payment-details.html?id=PY-2025-001">05/01/2025</a></td>
+                                                <td>600 د.أ</td>
+                                                <td>بطاقة ائتمانية</td>
+                                                <td><span class="badge bg-success">مكتمل</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance Section -->
+                    <div class="col-lg-6 mb-4">
+                        <!-- Maintenance Requests -->
+                        <div class="card shadow h-100">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">طلبات الصيانة السابقة</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="maintenance-details.html?id=MT-2025-002"
+                                        class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">مشكلة في التكييف</h6>
+                                            <small class="text-success">مكتمل</small>
+                                        </div>
+                                        <p class="mb-1">التكييف لا يعمل بشكل صحيح ويصدر أصوات غريبة</p>
+                                        <small><i class="fas fa-clock me-1"></i> 15/02/2025 - تم الإصلاح في
+                                            18/02/2025</small>
+                                    </a>
+                                    <a href="maintenance-details.html?id=MT-2025-001"
+                                        class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">تسرب مياه</h6>
+                                            <small class="text-success">مكتمل</small>
+                                        </div>
+                                        <p class="mb-1">تسرب مياه من تحت حوض المطبخ</p>
+                                        <small><i class="fas fa-clock me-1"></i> 02/01/2025 - تم الإصلاح في
+                                            03/01/2025</small>
+                                    </a>
+                                    <a href="maintenance-details.html?id=MT-2025-003"
+                                        class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">إصلاح باب</h6>
+                                            <small class="text-warning">قيد المعالجة</small>
+                                        </div>
+                                        <p class="mb-1">الباب الرئيسي يصدر صوت صرير عند الفتح والإغلاق</p>
+                                        <small><i class="fas fa-clock me-1"></i> 01/03/2025 - قيد المراجعة</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Section -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">عقد الإيجار</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <h5>تفاصيل العقد</h5>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>رقم العقد</strong></td>
+                                                        <td>AQ-2025-115</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>تاريخ البدء</strong></td>
+                                                        <td>15/06/2024</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>تاريخ الانتهاء</strong></td>
+                                                        <td>15/06/2025</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>مدة العقد</strong></td>
+                                                        <td>12 شهر</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>القيمة الشهرية</strong></td>
+                                                        <td>600 د.أ</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <h5>المرفقات</h5>
+                                            <div class="list-group">
+                                                <a href="download-contract.html?file=AQ-2025-115.pdf"
+                                                    class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-file-pdf me-2 text-danger"></i> عقد الإيجار
+                                                    الأصلي.pdf
+                                                </a>
+                                                <a href="download-contract.html?file=unit-photos.zip"
+                                                    class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-file-image me-2 text-primary"></i> صور الوحدة عند
+                                                    التسليم.zip
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <a href="print-contract.html?id=AQ-2025-115" class="btn btn-outline-primary me-2">
+                                        <i class="fas fa-print me-2"></i> طباعة العقد
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS الخاص بالتطبيق -->
+     <script src="js/card-tanat-template.js"></script>
+    <script src="js/Home-Tenant.js"></script>
+    <script src="js/Footer-Tenants.js"></script>
+    <script src="js/Sidebar-Tenants.js"></script>
+    <script src="js/Topbar-Tenants.js"></script>
+    
+</body>
+
+</html>
